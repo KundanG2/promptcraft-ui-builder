@@ -46,11 +46,12 @@ const ProductListing = () => {
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const matchesSearch = product.product_name
+      const productName = product.product_name || "";
+      const matchesSearch = productName
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
 
-      const specs = product.product_specifications;
+      const specs = product.product_specifications || {};
 
       const matchesWidth =
         !selectedWidth ||

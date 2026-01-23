@@ -52,6 +52,7 @@ export const extractCategory = (sourceUrl: string): string => {
 export const getUniqueWidths = (products: Product[]): string[] => {
   const widths = new Set<string>();
   products.forEach((p) => {
+    if (!p.product_specifications) return;
     Object.entries(p.product_specifications).forEach(([key, value]) => {
       if (key.toLowerCase().includes("width") && value && value !== "x") {
         widths.add(value);
@@ -64,6 +65,7 @@ export const getUniqueWidths = (products: Product[]): string[] => {
 export const getUniqueRimDiameters = (products: Product[]): string[] => {
   const rims = new Set<string>();
   products.forEach((p) => {
+    if (!p.product_specifications) return;
     Object.entries(p.product_specifications).forEach(([key, value]) => {
       if (key.toLowerCase().includes("rim") && value && value !== "x") {
         rims.add(value);
@@ -76,6 +78,7 @@ export const getUniqueRimDiameters = (products: Product[]): string[] => {
 export const getUniqueSpeedRatings = (products: Product[]): string[] => {
   const ratings = new Set<string>();
   products.forEach((p) => {
+    if (!p.product_specifications) return;
     Object.entries(p.product_specifications).forEach(([key, value]) => {
       if (
         (key.toLowerCase().includes("speed") || key.toLowerCase().includes("symbol")) &&
